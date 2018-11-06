@@ -10,12 +10,5 @@ package lrucache;
  * @author quangthai
  */
 public class LRUCache {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
 }

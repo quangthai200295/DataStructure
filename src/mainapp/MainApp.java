@@ -26,7 +26,7 @@ public class MainApp {
         simpleLinkedList.insertHeadList(new Student(2, "Check", "Di An"));
         System.out.println(simpleLinkedList.toString());
         System.out.println("---------------- DELETE ID = 2");
-        simpleLinkedList.removeNode(2);
+        simpleLinkedList.removeSimpleNode(2);
         System.out.println(simpleLinkedList.toString());
     }
 }

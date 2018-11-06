@@ -5,8 +5,6 @@
  */
 package linkedlist;
 
-import java.util.HashMap;
-import java.util.Map;
 import object.Student;
 
 /**
@@ -15,12 +13,12 @@ import object.Student;
  */
 public class SimpleLinkedList {
 
-    private class Node {
+    private class SimpleNode {
 
         Student data;
-        Node pNext;
+        SimpleNode pNext;
 
-        public Node(Student data) {
+        public SimpleNode(Student data) {
             this.data = data;
             this.pNext = null;
         }
@@ -28,7 +26,7 @@ public class SimpleLinkedList {
     }
 
     // pHead
-    private Node pHead;
+    private SimpleNode pHead;
 
     public SimpleLinkedList() {
         this.pHead = null;
@@ -41,8 +39,12 @@ public class SimpleLinkedList {
      * @param student
      */
     public void insertHeadList(Student student) {
-        Node element = new Node(student);
-        if (this.pHead == null) {
+        if(containsId(student.getId())){
+            // id of student is unique, if contains ID of student in linked list, do nothing
+            return;
+        }
+        SimpleNode element = new SimpleNode(student);
+        if (isNull()) {
             pHead = element;
             return;
         }
@@ -54,31 +56,30 @@ public class SimpleLinkedList {
      * remove all node if id = idStudent
      * @param idStudent
      */
-    public void removeNode(int idStudent){
+    public void removeSimpleNode(int idStudent){
         if(!containsId(idStudent)){
             return;
         }
         // if idStudent == pHead
-        while (this.pHead != null && this.pHead.data.getId() == idStudent){
+        if (this.pHead.data.getId() == idStudent){
             this.pHead = this.pHead.pNext;
-        }
-        if (this.pHead == null){
             return;
         }
-        Node cursor = this.pHead;
+        SimpleNode cursor = this.pHead;
         while (cursor.pNext != null){
             if(cursor.pNext.data.getId() == idStudent){
                 cursor.pNext = cursor.pNext.pNext;
+                return;
             }
             cursor = cursor.pNext;
         }
     }
     
     public boolean containsId(int idStudent){
-        if(this.pHead == null){
+        if(isNull()){
             return false;
         }
-        Node cursor = this.pHead;
+        SimpleNode cursor = this.pHead;
         while(cursor != null){
             if(cursor.data.getId() == idStudent){
                 return true;
@@ -87,6 +88,10 @@ public class SimpleLinkedList {
         }
         return false;
     }
+    
+    private boolean isNull(){
+        return this.pHead == null;
+    }
 
     @Override
     public String toString() {
@@ -94,7 +99,7 @@ public class SimpleLinkedList {
         if(this.pHead == null){
             return "List is empty !!!!!!";
         }
-        Node cursor = pHead;
+        SimpleNode cursor = pHead;
         while(cursor != null){
             result += cursor.data.toString() + " \n";
             cursor = cursor.pNext;

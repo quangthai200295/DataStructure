@@ -6,7 +6,7 @@
 package object;
 
 /**
- *
+ * id of Student is unique
  * @author mongnt
  */
 public class Student {
@@ -15,7 +15,7 @@ public class Student {
     private String address;
 
     public Student(){
-        this.id = 0;
+        this.id = -1;
         this.name = "";
         this.address = "";
     }
